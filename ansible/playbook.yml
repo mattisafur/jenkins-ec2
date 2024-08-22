@@ -1,0 +1,35 @@
+- name: install jenkins
+  tasks:
+  - name: install general dependencies
+    ansible.builtin.dnf:
+      state: present
+      name:
+        - git
+        
+  - name: add jenkins repo
+    ansible.builtin.get_url:
+      url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+      dest: /etc/yum.repos.d/jenkins.repo
+
+  - name: import jenkins key
+    ansible.builtin.rpm_key:
+      state: present
+      key: https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+    
+  - name: install java
+    ansible.builtin.dnf:
+      state: present
+      name:
+        - java-17-amazon-corretto
+  
+  - name: install jenkins
+    ansible.builtin.dnf:
+      state: present
+      name:
+        - jenkins
+  
+  - name: enable and start jenkins
+    ansible.builtin.service:
+      name: jenkins
+      state: started
+      enabled: yes

@@ -2,5 +2,5 @@ resource "local_file" "inventory_file" {
   content = templatefile("inventory.tpl", {
     ip_address = aws_instance.jenkins.public_ip
   })
-  filename = "inventory.ini"
+  filename = "../ansible/inventory.ini"
 }
