@@ -1,0 +1,33 @@
+- name: Add jenkins repository
+  ansible.builtin.get_url:
+    url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+    dest: /etc/yum.repos.d/jenkins.repo
+    mode: '644'
+  become: true
+
+- name: Import jenkins key
+  ansible.builtin.rpm_key:
+    key: https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+  become: true
+
+- name: Install Java
+  ansible.builtin.dnf:
+    state: present
+    name:
+      - java-17-amazon-corretto
+  become: true
+
+- name: Install Jenkins
+  ansible.builtin.dnf:
+    state: present
+    name:
+      - jenkins
+    update_cache: true # TODO: check if line is needed and reomve if not
+  become: true
+
+- name: Start and enable jenkins service
+  ansible.builtin.service:
+    name: jenkins
+    state: started
+    enabled: true
+  become: true

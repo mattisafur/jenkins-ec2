@@ -1,0 +1,4 @@
+- name: Install Jenkins master server
+  hosts: master
+  roles:
+    - install_jenkins

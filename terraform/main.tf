@@ -48,7 +48,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_outbound_all" {
   ip_protocol = -1
 }
 
-resource "aws_instance" "jenkins" {
+resource "aws_instance" "jenkins_master" {
   ami           = data.aws_ami.amazon_linux_2023.id
   instance_type = var.instance_type
 

@@ -5,13 +5,6 @@ variable "aws_region" {
   sensitive = false
 }
 
-variable "key_name" {
-  type        = string
-  description = "SSH key pair to be used for connecting to the jenkins instance"
-
-  sensitive = true
-}
-
 variable "instance_type" {
   type        = string
   description = "The jenins instance type"
@@ -38,4 +31,18 @@ variable "storage_size" {
   description = "Storage size of the jenkins instance"
 
   sensitive = false
+}
+
+variable "key_name" {
+  type        = string
+  description = "SSH key pair to be used for connecting to the jenkins instance"
+
+  sensitive = true
+}
+
+variable "ansible_ssh_key_file" {
+  type = string
+  description = "SSH key to be used by ansible for connecting to servers"
+
+  sensitive = true
 }

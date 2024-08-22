@@ -1,0 +1,4 @@
+- name: Install Jenkins node
+  hosts: "nodes"
+  roles:
+    - "install_jenkins"
