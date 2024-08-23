@@ -39,10 +39,3 @@ variable "key_name" {
 
   sensitive = true
 }
-
-variable "ansible_ssh_key_file" {
-  type = string
-  description = "SSH key to be used by ansible for connecting to servers"
-
-  sensitive = true
-}
